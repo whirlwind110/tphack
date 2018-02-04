@@ -26,12 +26,11 @@ function check_remote_file_exists($url) {
 	$curl = curl_init($url);
 	curl_setopt($curl, CURLOPT_NOBODY, true);
 	$result = curl_exec($curl);
+	$found = false;
 	if ($result !== false) {
 		$statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
 		if ($statusCode == 200) {
 			$found = true;
-		} else {
-			$found = false;
 		}
 	}
 	curl_close($curl);
